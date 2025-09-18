@@ -12,11 +12,7 @@ export default function LoginPage() {
                 className="bg-card m-auto h-fit w-full max-w-sm rounded-[calc(var(--radius)+.125rem)] border p-0.5 shadow-md dark:[--color-muted:var(--color-zinc-900)]">
                 <div className="p-8 pb-6">
                     <div>
-                        <Link
-                            href="/"
-                            aria-label="go home">
-                        </Link>
-                        <h1 className="mb-1 mt-4 text-xl font-semibold">Create a Tailark Account</h1>
+                        <h1 className="mb-1 mt-4 text-xl font-semibold">Create a Sketcho Account</h1>
                         <p className="text-sm">Welcome! Create an account to get started</p>
                     </div>
 
