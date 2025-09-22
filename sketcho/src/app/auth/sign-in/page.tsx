@@ -1,13 +1,21 @@
+"use client"
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
+import { useAuth } from '@/hooks/use-Auth'
 import Link from 'next/link'
 
 export default function LoginPage() {
-    useAuth()
+    const { signInForm, handlesignIn, loading } = useAuth()
+    const {
+        register,
+        handleSubmit,
+        formState: { errors }
+    } = signInForm
     return (
         <section className="flex min-h-screen bg-zinc-50 px-4 py-16 md:py-32 dark:bg-transparent">
             <form
+                onSubmit={handleSubmit(handlesignIn)}
                 action=""
                 className="bg-card m-auto h-fit w-full max-w-sm rounded-[calc(var(--radius)+.125rem)] border p-0.5 shadow-md dark:[--color-muted:var(--color-zinc-900)]">
                 <div className="p-8 pb-6">
@@ -77,9 +85,15 @@ export default function LoginPage() {
                             <Input
                                 type="email"
                                 required
-                                name="email"
                                 id="email"
+                                {...register('email')}
+                                className={errors.email ? 'border-distructive' : ''}
                             />
+                            {errors.email && (
+                                <p className='text-xs  text-distructive'>
+                                    {errors.email.message}
+                                </p>
+                            )}
                         </div>
 
                         <div className="space-y-0.5">
@@ -103,13 +117,28 @@ export default function LoginPage() {
                             <Input
                                 type="password"
                                 required
-                                name="pwd"
                                 id="pwd"
-                                className="input sz-md variant-mixed"
+                                {...register('Password')}
+                                className={errors.Password ? 'border-distructive' : ''}
                             />
+                            {errors.Password && (
+                                <p className='text-xs  text-distructive'>
+                                    {errors.Password.message}
+                                </p>
+                            )}
                         </div>
+                        {errors.root && (
+                            <p className='text-center , text-xs , text-deistructive'>
+                                {errors.root.message}
+                            </p>
+                        )}
 
-                        <Button className="w-full">Sign In</Button>
+                        <Button className="w-full"
+                        type='submit'
+                        disabled={loading}
+                        >
+                            {loading ? 'signing in...' : 'sign in'}
+                        </Button>
                     </div>
                 </div>
 
