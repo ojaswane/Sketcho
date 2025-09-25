@@ -32,6 +32,31 @@ const schema = defineSchema({
   }).index('by_userId' , ['userId']) //indexes are faster to get the querries , and thats it 
   ,
 
+  // subscriptions schema
+  subscriptions: defineTable({
+    userId: v.id('users'),
+    polarCustomerId: v.string(),
+    polarSubscriptionId: v.string(),
+    productId: v.optional(v.string()),
+    priceId: v.optional(v.string()),
+    planCode: v.optional(v.string()),
+    status: v.string(),
+    currentPeriodEnd: v.optional(v.number()),
+    trialEndsAt: v.optional(v.number()),
+    cancelAt: v.optional(v.number()),
+    canceledAt: v.optional(v.number()),
+    seats: v.optional(v.number()),
+    metadata: v.optional(v.any()),
+    creditsBalance: v.number(),
+    creditsGrantPerPeriod: v.number(),
+    creditsRolloverLimit: v.number(),
+    lastGrantCursor: v.optional(v.string()),
+  })
+    .index('by_userId', ['userId'])
+    .index('by_polarSubscriptionId', ['polarSubscriptionId'])
+    .index('by_status', ['status'])
+  ,
+
   // credits ledger schema
   credits: defineTable({
     userId: v.id('users'),
