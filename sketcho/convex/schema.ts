@@ -7,6 +7,25 @@ const schema = defineSchema({
   ...authTables,
   // Your other tables...
 
+  //projects schema 
+  Projects: defineTable({
+    userId: v.id('users'),
+    name: v.string(),
+    description: v.optional(v.string()),
+    styeleGuide: v.optional(v.string()),
+    sketchData: v.any(), //json Structure to `matching redux state 
+    viewportData :  v.optional(v.any()),
+    generatedDesignData : v.optional(v.any()),
+    thumbnail : v.optional(v.string()),
+    moodBoardImage : v.optional(v.array(v.string())),
+    InspirationImages: v.optional(v.array(v.string())),
+    lastModified: v.number(),
+    createdAt: v.number(),
+    category: v.optional(v.array(v.string())),
+    projectNumber: v.number(),
+    isPublic: v.optional(v.boolean())
+  }).index('By_userId' , ['userId']),
+
   //this is the counter for the projects which we will be creating in this app 
   project_counter: defineTable({
     userId: v.id('users'),
