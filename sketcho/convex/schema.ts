@@ -6,7 +6,6 @@ import { v } from "convex/values";
 const schema = defineSchema({
   ...authTables,
   // Your other tables...
-
   //projects schema 
   Projects: defineTable({
     userId: v.id('users'),
@@ -31,6 +30,21 @@ const schema = defineSchema({
     userId: v.id('users'),
     nextProjectNumber: v.number()
   }).index('by_userId' , ['userId']) //indexes are faster to get the querries , and thats it 
+  ,
+
+  // credits ledger schema
+  credits: defineTable({
+    userId: v.id('users'),
+    subscriptionId: v.id('subscriptions'),
+    amount: v.number(),
+    type: v.string(),
+    reason: v.optional(v.string()),
+    idempotencyKey: v.optional(v.string()),
+    meta: v.optional(v.any()),
+  })
+    .index('by_subscriptionId', ['subscriptionId'])
+    .index('by_userId', ['userId'])
+    .index('by_idempotencyKey', ['idempotencyKey'])
 });
  
 export default schema;
