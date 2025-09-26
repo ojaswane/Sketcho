@@ -2,7 +2,7 @@ import { query } from "./_generated/server";
 import { v } from "convex/values";
 
 // Returns minimal entitlement info for a user based on subscriptions table
-export const getEntitlement = query({
+export const hasEntitlement = query({
   args: { userId: v.id("users") },
   handler: async (ctx, { userId }) => {
     const subscriptions = await ctx.db
