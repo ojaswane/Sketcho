@@ -21,7 +21,7 @@ export default function LoginPage() {
                 className="bg-card m-auto h-fit w-full max-w-sm rounded-[calc(var(--radius)+.125rem)] border p-0.5 shadow-md dark:[--color-muted:var(--color-zinc-900)]">
                 <div className="p-8 pb-6">
                     <div>
-                        <h1 className="mb-1 mt-4 text-xl font-semibold">Sign In to Tailark</h1>
+                        <h1 className="mb-1 mt-4 text-xl font-semibold">Sign In to Sketcho</h1>
                         <p className="text-sm">Welcome back! Sign in to continue</p>
                     </div>
 
@@ -128,7 +128,7 @@ export default function LoginPage() {
                             asChild
                             variant="link"
                             className="px-2">
-                            <Link href="/sign-in">Create account</Link>
+                            <Link href="/auth/sign-in">Create account</Link>
                         </Button>
                     </p>
                 </div>
