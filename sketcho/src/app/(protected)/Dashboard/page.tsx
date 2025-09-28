@@ -8,6 +8,8 @@ const page = async () => {
       redirect(`/billing${combinedSlug(profileName!)}`);
     }
     redirect(`/dashboard/${combinedSlug(profileName!)}`)
+
+    
 }
 
 export default page
